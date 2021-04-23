@@ -1,0 +1,56 @@
+﻿@using TicariOtomasyon.Models.Siniflar
+@model List<Fatura>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<table class="table table-bordered">
+    <tr>
+        <th> Fatura No</th>
+        <th> Tarih & Saat </th>
+        <th> Tutar </th>
+        <th>Vergi Dairesi</th>
+        <th>Teslim Eden</th>
+        <th>Teslim Alan</th>
+        <th>Güncelle</th>
+        <th>Detay</th>
+        <th>Fatura Kalemi</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td> @item.FaturaSeriNo@item.FaturaSiraNo</td>
+            <td> @item.FaturaTarihi.ToString("dd/MM/yyyy") @item.FaturaSaati </td>
+            <td> @item.Tutar ₺</td>
+            <td> @item.VergiDairesi </td>
+            <td> @item.TeslimEden </td>
+            <td> @item.TeslimAlan </td>
+            <td><a href="/Fatura/FaturaGuncelle/@item.FaturaId" class="btn btn-sm btn-success">Güncelle</a></td>
+            <td><a href="#" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#exampleModal">Detaylar</a></td>
+            <td><a href="/Fatura/FaturaDetay/@item.FaturaId" class="btn btn-sm btn-danger">Yeni Fatura Kalemi</a></td>
+        </tr>
+    }
+
+</table>
+<a href="/Fatura/YeniFatura" style="margin-top:20px;" class="btn btn-info btn-sm">Yeni Fatura</a>
+
+@*<div class="modal" tabindex="-1" role="dialog" id="exampleModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">@ViewBag.FaturaNo No'lu Fatura Detayları</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                @Html.Partial("FaturaDetay","Fatura")
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>*@

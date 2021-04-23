@@ -1,0 +1,56 @@
+﻿@model IEnumerable<TicariOtomasyon.Models.Siniflar.SatisHareketleri>
+
+@{
+    ViewBag.Title = "Siparislerim";
+    Layout = "~/Views/Shared/_CariLayout.cshtml";
+}
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Personel.PersonalAdi)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Urun.UrunAdi)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Tarih)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Adet)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Fiyat)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ToplamTutar)
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Personel.PersonalAdi)   @Html.DisplayFor(modelItem => item.Personel.PersonalSoyadi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Urun.UrunAdi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tarih)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Adet)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Fiyat)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ToplamTutar)
+            </td>
+
+        </tr>
+    }
+
+</table>

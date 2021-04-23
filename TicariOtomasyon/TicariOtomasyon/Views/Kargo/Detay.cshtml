@@ -1,0 +1,26 @@
+﻿@model IEnumerable<TicariOtomasyon.Models.Siniflar.KargoTakip>
+
+@{
+    ViewBag.Title = "Detay";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<ol class="breadcrumb mb-4">
+    <li class="breadcrumb-item active">@ViewBag.TakipKodu No'lu Kargo Detayları</li>
+</ol>
+<table class="table table-hover">
+    <tr>
+
+        <th>Tarih</th>
+        <th>Açıklama</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Tarih.ToString("dd/MM/yyyy")</td>
+            <td>@item.Aciklama</td>
+        </tr>
+    }
+
+</table>

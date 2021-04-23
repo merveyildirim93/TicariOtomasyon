@@ -1,0 +1,38 @@
+﻿@model IEnumerable<TicariOtomasyon.Models.Siniflar.MarkaGrupSinif>
+
+<div class="card">
+    <div class="card-header">
+        <h3 class="card-title">Ürünlerin Markaları</h3>
+    </div>
+    <!-- /.card-header -->
+    <div class="card-body p-0">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th style="width: 10px">#</th>
+                    <th>Marka</th>
+                    <th>Progress</th>
+                    <th style="width: 40px">Adet</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{int markaSira = 0;}
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@{markaSira++;} @markaSira</td>
+                        <td>@item.Marka</td>
+                        <td style="vertical-align: middle;">
+                            <div class="progress progress-xs">
+                                <div class="progress-bar bg-purple" style="width: 55%"></div>
+                            </div>
+                        </td>
+                        <td><span class="badge bg-purple">@item.Adet</span></td>
+                    </tr>
+                }
+
+            </tbody>
+        </table>
+    </div>
+    <!-- /.card-body -->
+</div>

@@ -1,0 +1,46 @@
+﻿@model IEnumerable<TicariOtomasyon.Models.Siniflar.FaturaKalem>
+
+@{
+    ViewBag.Title = "FaturaDetay";
+}
+
+<h4>Fatura Kalemleri</h4>
+<ol class="breadcrumb mb-4">
+    <li class="breadcrumb-item active">@ViewBag.FaturaNo No'lu Fatura</li>
+</ol>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Aciklama)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Miktar)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BirimFiyat)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Tutar)
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Aciklama)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Miktar)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BirimFiyat)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tutar)
+            </td>
+        </tr>
+    }
+</table>
+
+<a href="/Fatura/YeniFaturaKalem" style="margin-top:20px;" class="btn btn-info btn-sm">Yeni Fatura Kalem</a>

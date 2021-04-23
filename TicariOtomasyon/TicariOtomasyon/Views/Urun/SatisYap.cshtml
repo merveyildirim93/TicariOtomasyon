@@ -1,0 +1,79 @@
+﻿@model TicariOtomasyon.Models.Siniflar.SatisHareketleri
+
+@{
+    ViewBag.Title = "YeniSatis";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("SatisYap", "Urun", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Yeni Ürün Satışı - @ViewBag.Urun</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <input type="text" name="UrunId" value="@ViewBag.Id" style="display:none" />
+        <div class="form-group">
+            @Html.LabelFor(model => model.Tarih, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="text" name="Tarih" value="@DateTime.Now.ToString("dd/MM/yyyy")" class="form-control" />
+                @Html.ValidationMessageFor(model => model.Tarih, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Adet, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="number" max="10" min="1" name="Adet" id="Adet" class="form-control" onkeyup="tutarHesapla();" />
+                @Html.ValidationMessageFor(model => model.Adet, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Fiyat, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="text" name="Fiyat" id="Fiyat" value="@ViewBag.Fiyat" class="form-control" onkeyup="tutarHesapla();" />
+                @Html.ValidationMessageFor(model => model.Fiyat, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ToplamTutar, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                <input type="text" name="ToplamTutar" id="Tutar" class="form-control" />
+                @Html.ValidationMessageFor(model => model.ToplamTutar, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.CariId, "Cari", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.CariId, (List<SelectListItem>)ViewBag.CariListe, new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.PersonalId, "Personal", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.PersonalId, (List<SelectListItem>)ViewBag.PersonelListe, new { @class = "form-control" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Kaydet" class="btn btn-info btn-sm" />
+            </div>
+        </div>
+    </div>
+}
+
+<script type="text/javascript">
+    function tutarHesapla() {
+        var adet = document.getElementById('Adet').value;
+        var fiyat = document.getElementById('Fiyat').value;
+        var tutar = parseInt(adet) * parseInt(fiyat);
+        if (!isNaN(tutar)) {
+            document.getElementById('Tutar').value = tutar;
+        }
+    }
+</script>
